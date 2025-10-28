@@ -37,6 +37,7 @@ def defbase(QtdPares):
     
 
 cores = {'A' : "\033[0;31mA",
+         'U' : "\033[0;32mU",
          'T' : "\033[0;32mT",
          'G' : "\033[0;35mG",
          'C' : "\033[0;37mC",
@@ -52,13 +53,18 @@ print("\033[0m")
 #RNA
 
 RNA = input("Você deseja ver o RNA? (s/n)")
-if RNA.lower() == "s":
-    if fita1 == "T":
-        fita1 = fita1.replace("T", "U")
-    if fita2 == "T":
-        fita2 = fita2.replace("T", "U")
+if RNA.lower() == "s":  
     
-    for j in range(0,QtdPares):
-                print(cores['|'],cores[fita1[j]]," "," ",cores[fita2[j]],cores['|'])
+    for i in range(len(fita1)):
+        
+        if fita1[i] == 'T':
+            fita1[i] = 'U'
+        if fita2[i] == 'T':
+            fita2[i] = 'U'
+
+    
+    for j in range(QtdPares):
+        print(f"{cores['|']} {cores[fita1[j]]}     {cores[fita2[j]]} {cores['|']}")
 else:
     print("\033[0;31mFIM DA EXECUÇÃO")
+
