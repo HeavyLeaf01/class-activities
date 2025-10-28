@@ -1,12 +1,15 @@
 from random import *
-
+#bacteria: klebsiella
 QtdPares = int(input("Quantos pares de bases você deseja?: "))
 QtdParesTela = int(input("de quantos em quantos pares você deseja que apareça na tela: "))
 bases = ['A', 'C', 'T', 'G']
+
+
 def defbase(QtdPares):
     fita1=[]
     fita2=[]
-    
+    basesAT = 0
+    basesCG = 0
     for k in range(QtdPares):
         fita1.append(bases[randint(0,3)])
 
@@ -21,7 +24,17 @@ def defbase(QtdPares):
             base2 = "C"
 
         fita2 +=[base2]
-    return (fita1, fita2)
+        if base1 == "A":
+            basesAT += 1
+        elif base1 == "C":
+            basesCG += 1
+        elif base1 == "T":
+            basesAT += 1
+        elif base1 == "G":
+            basesCG += 1
+        
+    return (fita1, fita2, basesCG, basesAT)
+    
 
 cores = {'A' : "\033[0;31mA",
          'T' : "\033[0;32mT",
@@ -29,7 +42,7 @@ cores = {'A' : "\033[0;31mA",
          'C' : "\033[0;37mC",
          '-' : "\033[0;36m-",
          '|' : "\033[0;36m|"}
-fita1, fita2 = defbase(QtdPares)
+fita1, fita2, basesCG, basesAT = defbase(QtdPares)
 
 for j in range(0,QtdPares):
     print(cores['|'],cores[fita1[j]],cores['-'],cores['-'],cores[fita2[j]],cores['|'])
@@ -38,4 +51,14 @@ print("\033[0m")
 
 #RNA
 
-
+RNA = input("Você deseja ver o RNA? (s/n)")
+if RNA.lower() == "s":
+    if fita1 == "T":
+        fita1 = fita1.replace("T", "U")
+    if fita2 == "T":
+        fita2 = fita2.replace("T", "U")
+    
+    for j in range(0,QtdPares):
+                print(cores['|'],cores[fita1[j]]," "," ",cores[fita2[j]],cores['|'])
+else:
+    print("\033[0;31mFIM DA EXECUÇÃO")
