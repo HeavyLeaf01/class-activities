@@ -39,16 +39,25 @@ def defbase(QtdPares):
 cores = {'A' : "\033[0;31mA",
          'U' : "\033[0;32mU",
          'T' : "\033[0;32mT",
-         'G' : "\033[0;35mG",
+         'G' : "\033[0;34mG",
          'C' : "\033[0;37mC",
          '-' : "\033[0;36m-",
          '|' : "\033[0;36m|"}
 fita1, fita2, basesCG, basesAT = defbase(QtdPares)
+QtdparesMostrando = QtdPares / QtdParesTela
 
-for j in range(0,QtdPares):
-    print(cores['|'],cores[fita1[j]],cores['-'],cores['-'],cores[fita2[j]],cores['|'])
+if ((QtdparesMostrando * 10) % 2 != 0):
+    QtdparesMostrandopar = int(QtdparesMostrando)
+    QtdparesMostrandodec = QtdparesMostrando % 1
 
-print("\033[0m")
+for p in range(0, int((QtdPares / QtdParesTela))):
+    escolhaPares = input("Você deseja ver as próximas partes da sequência? (s/n)")
+    if escolhaPares.lower() == "s":  
+        for j in range(0,QtdParesTela):
+            print(cores['|'],cores[fita1[j]],cores['-'],cores['-'],cores[fita2[j]],cores['|'])
+
+
+
 
 #RNA
 
@@ -67,4 +76,11 @@ if RNA.lower() == "s":
         print(f"{cores['|']} {cores[fita1[j]]}     {cores[fita2[j]]} {cores['|']}")
 else:
     print("\033[0;31mFIM DA EXECUÇÃO")
+basesAT = basesAT / QtdPares * 100 / 2
+
+print(f"A {basesAT:.1f}%\nT {basesAT:.1f}%\n")
+
+basesCG = basesCG / QtdPares * 100 / 2
+
+print(f"C {basesCG:.1f}%\nG {basesCG:.1f}%\n")
 
