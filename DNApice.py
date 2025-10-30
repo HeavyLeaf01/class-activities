@@ -1,5 +1,4 @@
 from random import *
-#bacteria: klebsiella
 QtdPares = int(input("Quantos pares de bases você deseja?: "))
 QtdParesTela = int(input("De quantos em quantos pares você deseja que apareça na tela: "))
 bases = ['A', 'C', 'T', 'G']
@@ -77,4 +76,5 @@ print(f"A {basesAT:.1f}%\nT {basesAT:.1f}%\n")
 basesCG = basesCG / QtdPares * 100 / 2
 
 print(f"C {basesCG:.1f}%\nG {basesCG:.1f}%\n")
+
 
