@@ -44,26 +44,13 @@ cores = {'A' : "\033[0;31mA",
          '-' : "\033[0;36m-",
          '|' : "\033[0;36m|"}
 fita1, fita2, basesCG, basesAT = defbase(QtdPares)
-QtdparesMostrando = QtdPares / QtdParesTela
-QtdparesMostrandodec = 0
-if not QtdparesMostrando % QtdParesTela == 0:
-    QtdparesMostrando = int(QtdparesMostrando)
-    QtdparesMostrandodec = QtdparesMostrando - int(QtdparesMostrando)
-else:
-    QtdparesMostrando = int(QtdparesMostrando)
-QtdparesMostrandodec = QtdparesMostrandodec * 10
-for p in range(0, int(QtdparesMostrando)):
-    escolhaPares = input("Você deseja ver as próximas partes da sequência? (s/n)")
-    if escolhaPares.lower() == "s":  
-        for j in range(0,QtdParesTela):
-            print(cores['|'],cores[fita1[j]],cores['-'],cores['-'],cores[fita2[j]],cores['|'])
+for i in range(0, QtdPares, QtdParesTela):
+    escolha = input("Você deseja ver a próxima parte da sequência? (s/n): ")
+    if escolha.lower() != "s":
+        break
 
-
-
-escolhaPares2 = input("Você deseja ver as próximas partes da sequência? (s/n)")
-if escolhaPares2.lower() == "s":  
-    for b in range(0,int(QtdparesMostrandodec)):
-        print(cores['|'],cores[fita1[b]],cores['-'],cores['-'],cores[fita2[b]],cores['|'])
+    for j in range(i, min(i + QtdParesTela, QtdPares)):
+        print(f"{cores['|']}{cores[fita1[j]]}{cores['-']}{cores['-']}{cores[fita2[j]]}{cores['|']}")
 
 
 
